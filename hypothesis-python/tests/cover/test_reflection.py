@@ -599,3 +599,12 @@ class Target(object):
 def test_required_args(target, args, kwargs, expected):
     # Mostly checking that `self` (and only self) is correctly excluded
     assert required_args(target, args, kwargs) == expected
+
+
+def test_required_args_default_init():
+    class DefaultInit(object):
+        pass
+
+    result = required_args(DefaultInit)
+    assert result is not None
+    assert result == set()
